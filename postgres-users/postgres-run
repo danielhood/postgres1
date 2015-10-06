@@ -1,0 +1,1 @@
+docker run --name postgres-users -e POSTGRES_PASSWORD=mysecretpassword -d danielhood/postgres-users

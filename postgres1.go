@@ -1,15 +1,40 @@
 package main
 
 import (
+	"time"
 	"fmt"
 	"log"
+	"os"
 	"database/sql"
 	_ "github.com/lib/pq"
 )
 
 func main() {
+	fmt.Println("waiting for db...")
+	time.Sleep(2000 * time.Millisecond)	
+
 	fmt.Println("here we go")
-	db, err := sql.Open("postgres", "host=docker1 user=postgres password=mysecretpassword dbname=postgres sslmode=disable")
+
+	var (
+		postgresHost string = "docker1"
+		postgresPort string = "5432"
+	)
+
+	if os.Getenv("POSTGRES_PORT_5432_TCP_ADDR") != "" {
+		postgresHost = os.Getenv("POSTGRES_PORT_5432_TCP_ADDR")
+	}
+
+	if os.Getenv("POSTGRES_PORT_5432_TCP_PORT") != "" {
+		postgresPort = os.Getenv("POSTGRES_PORT_5432_TCP_PORT")
+	}
+
+	var connectionString string
+
+	connectionString = fmt.Sprintf("host=%s port=%s user=postgres password=mysecretpassword dbname=postgres sslmode=disable", postgresHost, postgresPort)
+
+	fmt.Println("connectionString: ", connectionString)
+
+	db, err := sql.Open("postgres", connectionString)
 	if err != nil {
 		log.Fatal(err)
 	}

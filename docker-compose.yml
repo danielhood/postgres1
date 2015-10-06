@@ -1,0 +1,9 @@
+postgres1:
+  image: danielhood/postgres1
+  links:
+    - postgres-users:postgres
+
+postgres-users:
+  image: danielhood/postgres-users
+  environment:
+    - POSTGRES_PASSWORD=mysecretpassword

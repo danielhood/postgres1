@@ -1,0 +1,10 @@
+postgres1:
+  build: .
+  links:
+    - postgres-users:postgres
+
+postgres-users:
+  restart: always
+  build: ./postgres-users
+  environment:
+    - POSTGRES_PASSWORD=mysecretpassword

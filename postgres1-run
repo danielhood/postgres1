@@ -1,0 +1,1 @@
+docker run -it --link postgres-users:postgres --rm=true danielhood/postgres1
