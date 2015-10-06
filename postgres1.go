@@ -13,7 +13,7 @@ func main() {
 	fmt.Println("waiting for db...")
 	time.Sleep(2000 * time.Millisecond)	
 
-	fmt.Println("here we go")
+	fmt.Println("here we go again!")
 
 	var (
 		postgresHost string = "docker1"
