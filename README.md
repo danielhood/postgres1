@@ -1,3 +1,11 @@
 # postgres1
 
-CGO_ENABLED=0 GOOS=linux go build -a -tags netgo -installsuffix netgo -ldflags '-w' .
+Requires:
+  docker
+  docker-compose
+  golang
+
+run ./build  to build the binary and the docker images. The stack is immediately run after building
+
+
+
